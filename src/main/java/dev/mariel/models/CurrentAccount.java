@@ -1,7 +1,12 @@
 package dev.mariel.models;
 
 public class CurrentAccount extends Account {
+    public float getOverdraft() {
+        return overdraft;
+    }
+
     private float overdraft = 0;
+
 
     public CurrentAccount(float balance, float annualRate) {
         super(balance, annualRate);
@@ -13,7 +18,7 @@ public class CurrentAccount extends Account {
             if (amount <= this.getBalance()) {
                 super.withdraw(amount);
             } else {
-                overdraft += (amount - getBalance());
+                overdraft += (amount - this.getBalance());
                 super.withdraw(getBalance());
             }
         }
