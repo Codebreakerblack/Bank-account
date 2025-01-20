@@ -10,7 +10,7 @@ public class SavingsAccount extends Account {
 
     @Override
     public void consign (float amount) {
-        if (active) {
+        if (amount > 0) {
             super.consign(amount);
             updateStatus();
         }
@@ -27,14 +27,21 @@ public class SavingsAccount extends Account {
     @Override
     public void generateMonthlyExtract() {
         if (this.getNumberOfWithdrawals() > 4) {
-            this.setMonthlyCommission(this.getMonthlyCommission() + (this.getNumberOfWithdrawals () - 4) * 1000);
+            this.setMonthlyCommission(this.getMonthlyCommission() + (this.getNumberOfWithdrawals() - 4) * 1000);
         }
+
+        float additionalCommission = this.getMonthlyCommission();
         super.generateMonthlyExtract();
+        this.setMonthlyCommission(additionalCommission);
         updateStatus();
     }
 
     private void updateStatus() {
         active = this.getBalance() >= 10000;
+    }
+
+    public boolean isActive() {
+        return active;
     }
 
     @Override

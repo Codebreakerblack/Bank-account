@@ -1,13 +1,10 @@
-package dev.mariel.modelstest;
+package dev.mariel.models;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-import dev.mariel.models.Account;
-
-public class TestAccount {
-
+public class AccountTest {
     @Test
     void testConsign_validAmount() {
     Account account = new Account(1000.0f, 12.0f);
